@@ -8,5 +8,5 @@ soupdata = soup.findAll('h3', class_='story-text__heading-medium')
 for elements in soupdata:
     info = elements.get_text()  #work done names
 
-soupdata2 = soup.findAll('span', {"style":"font-family:'Jubilat', serif; font-weight:700; font-size:20px;"}) 
+soupdata2 = soup.findAll('div', class_='story-text')
 print(soupdata2)
