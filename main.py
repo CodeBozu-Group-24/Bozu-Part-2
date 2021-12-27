@@ -6,5 +6,7 @@ data = requests.get('https://www.politico.com/news/magazine/2021/01/18/trump-pre
 soup = BeautifulSoup(data, 'lxml')
 soupdata = soup.findAll('h3', class_='story-text__heading-medium')
 for elements in soupdata:
-    info = elements.get_text()
-    
+    info = elements.get_text()  #work done names
+
+soupdata2 = soup.findAll('span', {"style":"font-family:'Jubilat', serif; font-weight:700; font-size:20px;"}) 
+print(soupdata2)
