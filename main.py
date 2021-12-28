@@ -8,5 +8,4 @@ soupdata = soup.findAll('h3', class_='story-text__heading-medium')
 for elements in soupdata:
     info = elements.get_text()  #work done names
 
-soupdata2 = soup.findAll('div', class_='story-text')
-print(soupdata2)
+#try out there
