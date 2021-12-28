@@ -17,12 +17,17 @@ count = 1
 for element in soupMoves:
     if count == 1:
         moves.append(element)
+ 
     elif count == 2:
         impact.append(element)
+
     elif count ==3:
         upshot.append(element)
+
     count +=1
     if count > 3:
         count = 1
 
 AllTopics = zip(soupdata, moves, impact, upshot)
+
+print("Hello World")
