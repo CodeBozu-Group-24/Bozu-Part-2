@@ -19,7 +19,7 @@ story_text = soup.find_all("div", {"class":"story-text"})
 story_text = story_text[2:]
 for story in story_text:
     if "The move" not in story.get_text() or "The impact" not in story.get_text() or "The upshot" not in story.get_text():
-        print("error here^^^^")
+        pass
     else:
         storyparagraphs = story.find_all('p', {"class":"story-text__paragraph"})
         for element in storyparagraphs:
