@@ -9,35 +9,39 @@ things = []
 for elements in soupdata:
     info = elements.get_text()
     things.append(info)  #work done names
-things.remove('Religion in schools')
-soupMoves = soup.findAll('p', class_="story-text__paragraph")
+
+things.remove("Religion in schools")
+print(things)
+
+
 moves = []
 impact = []
 upshot = []
-count = 1
-for element in soupMoves[0:3]:
-    if 'The move' in str(element):
-        moves.append(element.get_text())
-    if 'The impact' in str(element):
-        impact.append(element.get_text())
-    if 'The upshot' in str(element):
-        upshot.append(element.get_text())
-
-for element in soupMoves[6:]:
-    if 'The move' in str(element):
-        moves.append(element.get_text())
-    if 'The impact:' in str(element):
-        impact.append(element.get_text())
-    if 'The upshot:' in str(element):
-        upshot.append(element.get_text())
+story_text = soup.find_all("div", {"class":"story-text"})
+story_text = story_text[2:]
+for story in story_text:
+    if "The move" not in story.get_text() or "The impact" not in story.get_text() or "The upshot" not in story.get_text():
+        print("error here^^^^")
+    else:
+        storyparagraphs = story.find_all('p', {"class":"story-text__paragraph"})
+        for element in storyparagraphs:
+            if 'The move:' in str(element):
+                moves.append(element.get_text())
+            if 'The impact:' in str(element):
+                impact.append(element.get_text())
+            if 'The upshot:' in str(element):
+                upshot.append(element.get_text())
 
 for i in range(len(things)):
     full_details = []
     full_details.append(things[i])
     full_details.append(moves[i])
-    full_details.append("None")
-    full_details.append("None")
+    full_details.append(impact[i])
+    full_details.append(upshot[i])
     with open('details.csv', 'a') as f:
         writer_object = writer(f)
         writer_object.writerow(full_details)
         f.close()
+
+
+
