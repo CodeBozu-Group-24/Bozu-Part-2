@@ -41,5 +41,3 @@ for i in range(len(things)):
         writer_object = writer(f)
         writer_object.writerow(full_details)
         f.close()
-       
-    
