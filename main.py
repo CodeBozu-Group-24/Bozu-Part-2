@@ -27,8 +27,8 @@ for i in range(len(things)):
     full_details = []
     full_details.append(things[i])
     full_details.append(moves[i])
-    #full_details.append(impact[i])
-    #full_details.append(upshot[i])
+    full_details.append("None")
+    full_details.append("None")
     with open('details.csv', 'a') as f:
         writer_object = writer(f)
         writer_object.writerow(full_details)
