@@ -15,7 +15,15 @@ moves = []
 impact = []
 upshot = []
 count = 1
-for element in soupMoves:
+for element in soupMoves[0:3]:
+    if 'The move' in str(element):
+        moves.append(element.get_text())
+    if 'The impact' in str(element):
+        impact.append(element.get_text())
+    if 'The upshot' in str(element):
+        upshot.append(element.get_text())
+
+for element in soupMoves[4:]:
     if 'The move' in str(element):
         moves.append(element.get_text())
     if 'The impact' in str(element):
@@ -27,8 +35,8 @@ for i in range(len(things)):
     full_details = []
     full_details.append(things[i])
     full_details.append(moves[i])
-    full_details.append("None")
-    full_details.append("None")
+    #full_details.append(impact[i])
+    #full_details.append(upshot[i])
     with open('details.csv', 'a') as f:
         writer_object = writer(f)
         writer_object.writerow(full_details)
