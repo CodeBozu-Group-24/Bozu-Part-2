@@ -9,7 +9,7 @@ things = []
 for elements in soupdata:
     info = elements.get_text()
     things.append(info)  #work done names
-
+things.remove('Religion in schools')
 soupMoves = soup.findAll('p', class_="story-text__paragraph")
 moves = []
 impact = []
