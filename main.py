@@ -5,29 +5,33 @@ from csv import writer
 data = requests.get('https://www.politico.com/news/magazine/2021/01/18/trump-presidency-administration-biggest-impact-policy-analysis-451479').text
 soup = BeautifulSoup(data, 'lxml')
 soupdata = soup.findAll('h3', class_='story-text__heading-medium')
+things = []
 for elements in soupdata:
-    info = elements.get_text()  #work done names
-    print(info)
-print("-----------------------------------------------------------------------")
+    info = elements.get_text()
+    things.append(info)  #work done names
+
 soupMoves = soup.findAll('p', class_="story-text__paragraph")
 moves = []
 impact = []
 upshot = []
 count = 1
 for element in soupMoves:
-    if count == 1:
-        moves.append(element)
- 
-    elif count == 2:
-        impact.append(element)
+    if 'The move' in str(element):
+        moves.append(element.get_text())
+    if 'The impact' in str(element):
+        impact.append(element.get_text())
+    if 'The upshot' in str(element):
+        upshot.append(element.get_text())
 
-    elif count ==3:
-        upshot.append(element)
-
-    count +=1
-    if count > 3:
-        count = 1
-
-AllTopics = zip(soupdata, moves, impact, upshot)
-
-print("Hello World")
+for i in range(len(things)):
+    full_details = []
+    full_details.append(things[i])
+    full_details.append(moves[i])
+    #full_details.append(impact[i])
+    #full_details.append(upshot[i])
+    with open('details.csv', 'a') as f:
+        writer_object = writer(f)
+        writer_object.writerow(full_details)
+        f.close()
+       
+    
