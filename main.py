@@ -23,17 +23,19 @@ for element in soupMoves[0:3]:
     if 'The upshot' in str(element):
         upshot.append(element.get_text())
 
+<<<<<<< HEAD
 for element in soupMoves[4:]:
     if 'The move:' in str(element):
+=======
+for element in soupMoves[6:]:
+    if 'The move' in str(element):
+>>>>>>> 98b2112a18819104ba63a5daab2ebe1585f638fb
         moves.append(element.get_text())
     if 'The impact:' in str(element):
         impact.append(element.get_text())
     if 'The upshot:' in str(element):
         upshot.append(element.get_text())
 
-print(len(moves))
-print(len(upshot))
-print(len(impact))
 for i in range(len(things)):
     full_details = []
     full_details.append(things[i])
