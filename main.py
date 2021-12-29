@@ -24,11 +24,11 @@ for element in soupMoves[0:3]:
         upshot.append(element.get_text())
 
 for element in soupMoves[4:]:
-    if 'The move' in str(element):
+    if 'The move:' in str(element):
         moves.append(element.get_text())
-    if 'The impact' in str(element):
+    if 'The impact:' in str(element):
         impact.append(element.get_text())
-    if 'The upshot' in str(element):
+    if 'The upshot:' in str(element):
         upshot.append(element.get_text())
 
 print(len(moves))
