@@ -15,7 +15,7 @@ moves = []
 impact = []
 upshot = []
 count = 1
-for element in soupMoves[0:3]:
+for element in soupMoves[0:6]:
     if 'The move' in str(element):
         moves.append(element.get_text())
     if 'The impact' in str(element):
@@ -23,7 +23,7 @@ for element in soupMoves[0:3]:
     if 'The upshot' in str(element):
         upshot.append(element.get_text())
 
-for element in soupMoves[4:]:
+for element in soupMoves[6:]:
     if 'The move' in str(element):
         moves.append(element.get_text())
     if 'The impact' in str(element):
