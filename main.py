@@ -37,10 +37,10 @@ impact.append("Many religious education groups praised DeVos’ changes, which s
 upshot.append("The Biden administration is expected to move quickly to roll back many of DeVos’ education policies, but it’s not yet clear how the incoming administration will approach her various policy tweaks to promote religious organizations.")
 for i in range(len(things)):
     full_details = []
-    full_details.append(things[i].encode())
-    full_details.append(moves[i].encode())
-    full_details.append(impact[i].encode())
-    full_details.append(upshot[i].encode())
+    full_details.append(things[i].encode("ascii", "ignore"))
+    full_details.append(moves[i].encode("ascii", "ignore"))
+    full_details.append(impact[i].encode("ascii", "ignore"))
+    full_details.append(upshot[i].encode("ascii", "ignore"))
     with open('details.csv', 'a') as f:
         writer_object = writer(f)
         writer_object.writerow(full_details)
