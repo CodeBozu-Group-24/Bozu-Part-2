@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 import requests
 import csv
 from csv import writer
+import re
 data = requests.get('https://www.politico.com/news/magazine/2021/01/18/trump-presidency-administration-biggest-impact-policy-analysis-451479').text
 soup = BeautifulSoup(data, 'lxml')
 soupdata = soup.findAll('h3', class_='story-text__heading-medium')
@@ -24,11 +25,11 @@ for story in story_text:
         storyparagraphs = story.find_all('p', {"class":"story-text__paragraph"})
         for element in storyparagraphs:
             if 'The move:' in str(element):
-                moves.append(element.get_text())
+                moves.append(re.sub("The move:", "", element.get_text()))
             if 'The impact:' in str(element):
-                impact.append(element.get_text())
+                impact.append(re.sub("The impact:", "", element.get_text()))
             if 'The upshot:' in str(element):
-                upshot.append(element.get_text())
+                upshot.append(re.sub("The upshot:", "", element.get_text()))
 
 things.append("Religion in schools")
 moves.append("DeVos tweaked a wide range of federal education policies, large and small, to bolster faith-based organizations. She changed regulations, for example, to make it easier for members of religious orders to access federal financial aid and expanded federal Public Service Loan Forgiveness to cover clergy members. And she created new protections for faith-based campus organizations at public universities. At the K-12 education level, DeVos stopped enforcing a policy that had prohibited religious organizations from providing publicly funded services—such as tutoring, technology and counseling—in private schools. And she opened up federal grants for charter schools to religiously affiliated organizations.")
