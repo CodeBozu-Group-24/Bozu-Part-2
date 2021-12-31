@@ -52,14 +52,17 @@ for i in range(len(things)):
 #sentiment
 pos = []
 neg = []
+neu = []
 sid_obj = SentimentIntensityAnalyzer()
 for sentence in impact:
     sentiment_dict = sid_obj.polarity_scores(sentence)
     positivity = sentiment_dict['pos']*100
     negativity = sentiment_dict['neg']*100
+    neutrality = sentiment_dict['neu']*100
     pos.append(positivity)
     neg.append(negativity)
-
+    neu.append(neutrality)
+'''    
 for i in range(len(things)):
     full_details = []
     full_details.append((things[i].encode("ascii", "ignore")).decode())
@@ -78,4 +81,14 @@ for i in range(len(things)):
     with open('sentiment_neg.csv', 'a') as f:
         writer_object = writer(f)
         writer_object.writerow(full_details)
-        f.close()    
+        f.close()  
+'''          
+for i in range(len(things)):
+    full_details = []
+    full_details.append((things[i].encode("ascii", "ignore")).decode())
+    full_details.append((impact[i].encode("ascii", "ignore")).decode())
+    full_details.append(neu[i])
+    with open('sentiment_neu.csv', 'a') as f:
+        writer_object = writer(f)
+        writer_object.writerow(full_details)
+        f.close()
